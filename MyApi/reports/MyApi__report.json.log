@@ -1,0 +1,129 @@
+{
+  "feature": {
+    "uri": "feature1.feature",
+    "description": "This is a restful api service test project.\nYou can use json-mock as an api server. Before runing the script, please init the mock message and start the json-mock server. It can be found in your project's node_modules folder. \nSteps:\n1. in command prompt, browse to your project folder,\n2. run the following command:\n    node_modules\\.bin\\json-mock.cmd data.json",
+    "keyword": "Feature",
+    "name": "Myapi",
+    "line": 1,
+    "id": "myapi",
+    "tags": []
+  }
+}{
+  "scenario": {
+    "uri": "feature1.feature",
+    "id": "myapi;get-all-data",
+    "keyword": "Scenario",
+    "line": 13,
+    "name": "Get All data",
+    "tags": [],
+    "type": "scenario",
+    "result": {
+      "duration": 582,
+      "status": "passed"
+    },
+    "steps": [
+      {
+        "arguments": [],
+        "keyword": "* ",
+        "line": 10,
+        "name": "Get the service api \"http://localhost:8081/fetchStudents\" and i should get the '[{\"id\":0,\"firstname\":\"undefined\",\"lastname\":\"undefined\",\"class\":\"undefined\",\"nationality\":\"undefined\"},{\"id\":223445,\"firstname\":\"Mike\",\"lastname\":\"Wong\",\"class\":\"3A\",\"nationality\":\"Singapore\"},{\"id\":900076,\"firstname\":\"bhargav\",\"lastname\":\"yendluri\",\"class\":\"6C\",\"nationality\":\"sg\"}]'",
+        "match": {
+          "location": "step_definitions/definitions.js:11"
+        },
+        "result": {
+          "status": "passed",
+          "duration": 582000000
+        }
+      }
+    ]
+  }
+}{
+  "scenario": {
+    "uri": "feature1.feature",
+    "id": "myapi;post-data",
+    "keyword": "Scenario",
+    "line": 19,
+    "name": "Post data",
+    "tags": [],
+    "type": "scenario",
+    "result": {
+      "duration": 603,
+      "status": "failed",
+      "exception": {
+        "generatedMessage": true,
+        "code": "ERR_ASSERTION",
+        "actual": {
+          "id": 345678,
+          "firstname": "Zack",
+          "lastname": "gee",
+          "class": "8B",
+          "nationality": "us"
+        },
+        "expected": {
+          "id": "345678",
+          "lastname": "Gee",
+          "class": "8B",
+          "nationality": "US"
+        },
+        "operator": "deepEqual"
+      }
+    },
+    "steps": [
+      {
+        "arguments": [],
+        "keyword": "* ",
+        "line": 16,
+        "name": "Post to service api \"http://localhost:8081/students\" with '{ \"id\": 345678, \"firstname\": \"Zack\", \"lastname\": \"gee\", \"class\": \"8B\", \"nationality\": \"us\"}' and I should get the '{\"id\":\"345678\",\"lastname\":\"Gee\",\"class\":\"8B\",\"nationality\":\"US\"}'",
+        "match": {
+          "location": "step_definitions/definitions.js:22"
+        },
+        "result": {
+          "status": "failed",
+          "duration": 603000000,
+          "error_message": "AssertionError [ERR_ASSERTION]: Expected values to be loosely deep-equal:\n\n{\n  class: '8B',\n  firstname: 'Zack',\n  id: 345678,\n  lastname: 'gee',\n  nationality: 'us'\n}\n\nshould loosely deep-equal\n\n{\n  class: '8B',\n  id: '345678',\n  lastname: 'Gee',\n  nationality: 'US'\n}\n    + expected - actual\n\n     {\n       \"class\": \"8B\"\n    -  \"firstname\": \"Zack\"\n    -  \"id\": 345678\n    -  \"lastname\": \"gee\"\n    -  \"nationality\": \"us\"\n    +  \"id\": \"345678\"\n    +  \"lastname\": \"Gee\"\n    +  \"nationality\": \"US\"\n     }\n\n    at options.World.<anonymous> (/Users/bhargavayendluri/node-rds/MyApi/features/step_definitions/definitions.js:32:19)\n    at processTicksAndRejections (internal/process/task_queues.js:93:5)"
+        }
+      }
+    ]
+  }
+}{
+  "scenario": {
+    "uri": "feature1.feature",
+    "id": "myapi;scenario-put-data",
+    "keyword": "Scenario",
+    "line": 25,
+    "name": "Scenario Put Data",
+    "tags": [],
+    "type": "scenario",
+    "result": {
+      "duration": 609,
+      "status": "failed",
+      "exception": {
+        "name": "ParseError",
+        "host": "localhost:8081",
+        "hostname": "localhost",
+        "method": "PUT",
+        "path": "/updateStudent/345678",
+        "protocol": "http:",
+        "url": "http://localhost:8081/updateStudent/345678",
+        "statusCode": 200,
+        "statusMessage": "OK"
+      }
+    },
+    "steps": [
+      {
+        "arguments": [],
+        "keyword": "* ",
+        "line": 22,
+        "name": "Update to service api \"http://localhost:8081/updateStudent/345678\" with '{\"nationality\": \"sg\"}' and I should get the 'User deleted Successfully'",
+        "match": {
+          "location": "step_definitions/definitions.js:36"
+        },
+        "result": {
+          "status": "failed",
+          "duration": 609000000,
+          "error_message": "ParseError: Unexpected token U in JSON at position 0 in \"http://localhost:8081/updateStudent/345678\": \nUser Updated Successfully...\n    at EventEmitter.<anonymous> (/Applications/CukeTest.app/Contents/Resources/app.asar/api/leanpro.got.js:1:45578)\n    at processTicksAndRejections (internal/process/task_queues.js:93:5)"
+        }
+      }
+    ]
+  }
+}
